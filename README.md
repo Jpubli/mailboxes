@@ -1,112 +1,162 @@
-# Rate Shopper WebApp
+# 📦 Rate Shopper WebApp
 
-**Comparador de Tarifas Logísticas con integración Sendcloud**
+Aplicación web full-stack para comparar tarifas de envío entre diferentes transportistas utilizando la API de Sendcloud.
 
-Una aplicación web moderna para comparar tarifas de envío de múltiples contratos logísticos. Los operarios pueden cargar un archivo JSON con datos de expedición y obtener instantáneamente una tabla comparativa con todas las tarifas disponibles.
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
+![React](https://img.shields.io/badge/react-18.2.0-blue)
 
----
+## ✨ Características
 
-## 🚀 Características
+- 🔍 **Comparación de tarifas** en tiempo real con la API de Sendcloud
+- 📊 **Tabla interactiva** con ordenamiento por precio, tiempo de entrega, y transportista
+- 📁 **Carga de JSON** con drag & drop o entrada manual
+- 🎯 **Soporte multi-paquete** con cálculo automático de pesos
+- 🔄 **Deduplicación inteligente** de métodos de envío
+- 🎨 **Interfaz moderna** con TailwindCSS y animaciones suaves
+- ⚡ **Modo mock** para desarrollo sin consumir API
 
-- ✅ **Carga intuitiva de datos**: Drag & Drop o pegado de JSON
-- ✅ **Validación en tiempo real**: Verificación instantánea de datos
-- ✅ **Panel de revisión**: Vista previa de la expedición antes de cotizar
-- ✅ **Comparación multicuenta**: Consulta todas las cuentas de Sendcloud simultáneamente
-- ✅ **Tabla ordenable**: Ordena por precio o tiempo de tránsito
-- ✅ **Highlights visuales**: Resalta la opción más barata y más rápida
-- ✅ **Copy-to-clipboard**: Copia el número de cuenta con un click
-- ✅ **Diseño premium**: Interfaz moderna con animaciones suaves
-- ✅ **Mock API incluida**: Prueba sin credenciales reales
+## 🏗️ Arquitectura
 
----
+```
+rate-shopper/
+├── rate-shopper-frontend/    # React + Vite + TailwindCSS
+│   ├── src/
+│   │   ├── components/        # Componentes reutilizables
+│   │   ├── App.jsx           # Componente principal
+│   │   └── index.css         # Estilos globales
+│   └── package.json
+│
+└── rate-shopper-backend/      # Express.js + Sendcloud API
+    ├── routes/                # Rutas de la API
+    ├── services/              # Integración Sendcloud (real/mock)
+    ├── utils/                 # Validadores y helpers
+    └── server.js             # Servidor principal
+```
 
-## 📋 Requisitos
+## 🚀 Instalación
 
-- **Node.js**: v14 o superior
-- **npm**: v6 o superior
+### Prerrequisitos
 
----
+- Node.js >= 18.0.0
+- npm >= 9.0.0
+- Cuenta de Sendcloud con API keys
 
-## 🛠️ Instalación
+### 1. Clonar el repositorio
 
-### 1. Clonar o descargar el proyecto
+```bash
+git clone https://github.com/Jpubli/mailboxes.git
+cd mailboxes
+```
 
-El proyecto contiene dos carpetas principales:
-- `rate-shopper-backend/` - Servidor API
-- `rate-shopper-frontend/` - Aplicación React
+### 2. Instalar dependencias
 
-### 2. Instalar Backend
-
+#### Backend
 ```bash
 cd rate-shopper-backend
 npm install
 ```
 
-### 3. Instalar Frontend
-
+#### Frontend
 ```bash
-cd rate-shopper-frontend
+cd ../rate-shopper-frontend
 npm install
 ```
 
----
+### 3. Configurar variables de entorno
 
-## ▶️ Ejecutar la Aplicación
+Crea un archivo `.env` en `rate-shopper-backend/`:
 
-### Opción A: Ejecutar ambos servicios (Frontend + Backend)
+```bash
+cd ../rate-shopper-backend
+cp .env.example .env
+```
 
-**Terminal 1 - Backend:**
+Edita `.env` con tus credenciales de Sendcloud:
+
+```env
+# API Keys de Sendcloud
+SENDCLOUD_PUBLIC_KEY=tu_public_key_aqui
+SENDCLOUD_SECRET_KEY=tu_secret_key_aqui
+
+# Puerto del servidor
+PORT=3001
+
+# Modo (false = API real, true = datos mock)
+USE_MOCK=false
+```
+
+> ⚠️ **Importante:** Nunca subas el archivo `.env` a GitHub. Ya está protegido en `.gitignore`.
+
+## 🎯 Uso
+
+### Modo Desarrollo
+
+#### 1. Iniciar el backend
 ```bash
 cd rate-shopper-backend
-npm run dev
+npm start
 ```
+
 El servidor estará disponible en `http://localhost:3001`
 
-**Terminal 2 - Frontend:**
+#### 2. Iniciar el frontend (en otra terminal)
 ```bash
 cd rate-shopper-frontend
 npm run dev
 ```
-La aplicación se abrirá automáticamente en `http://localhost:5173`
 
-### Opción B: Usar comandos desde la raíz
+La aplicación estará disponible en `http://localhost:5173`
 
+### Modo Producción
+
+#### Backend
 ```bash
-# Desde /Users/jota/Desktop/Desarrollo mailboxes/
-
-# Terminal 1 - Backend
-cd rate-shopper-backend && npm run dev
-
-# Terminal 2 - Frontend  
-cd rate-shopper-frontend && npm run dev
+cd rate-shopper-backend
+NODE_ENV=production npm start
 ```
 
----
+#### Frontend
+```bash
+cd rate-shopper-frontend
+npm run build
+npm run preview
+```
 
-## 📝 Cómo Usar
+## 📖 Cómo usar la aplicación
 
-### 1. Preparar JSON de expedición
+### Opción 1: Subir JSON
 
-Usa el archivo de ejemplo incluido: `expedicion0001000081_7BB0MOE9K_31-10-2025_10-34-49.json`
+1. Arrastra y suelta un archivo JSON con el formato de expedición
+2. O haz click para seleccionar el archivo
+3. Revisa los datos del envío
+4. Haz click en "Obtener Tarifas"
 
-O crea uno con esta estructura:
+### Opción 2: Entrada Manual
+
+1. Cambia a modo "Manual"
+2. Completa el formulario con:
+   - País origen/destino
+   - Código postal origen/destino
+   - Peso y dimensiones del paquete
+3. Haz click en "Obtener Tarifas"
+
+### Formato del JSON
 
 ```json
 {
   "shipment": "1000081",
-  "courier": "UPS",
-  "account": "4813V3",
   "shipper": {
-    "postalCode": "03203",
-    "countryCode": "ES"
+    "countryCode": "ES",
+    "postalCode": "03203"
   },
   "recipient": {
-    "postalCode": "75001",
-    "countryCode": "FR"
+    "countryCode": "FR",
+    "postalCode": "75001"
   },
   "packages": [
     {
-      "kg": "10.00",
+      "kg": "10",
       "lar": "30",
       "anc": "60",
       "alt": "50"
@@ -115,179 +165,117 @@ O crea uno con esta estructura:
 }
 ```
 
-### 2. Cargar en la aplicación
-
-- **Opción 1**: Arrastra el archivo JSON a la zona de carga
-- **Opción 2**: Haz click en "Seleccionar Archivo"
-- **Opción 3**: Click en "pegar como texto" y pega el JSON
-
-### 3. Revisar datos
-
-Confirma que los datos extraídos sean correctos:
-- Origen y destino
-- Número de bultos
-- Peso total
-
-### 4. Cotizar
-
-Haz click en "Cotizar Tarifas". El sistema consultará todas las cuentas y mostrará:
-- Transportista y servicio
-- Número de cuenta (ERP ID)
-- Tiempo de tránsito
-- Precio en €
-
-### 5. Seleccionar opción
-
-- Las opciones más baratas y rápidas están resaltadas en verde
-- Haz click en el número de cuenta para copiarlo al portapapeles
-- Ordena la tabla haciendo click en los encabezados "Coste" o "Tiempo"
-
----
-
 ## 🔧 Configuración
 
-### Backend - Variables de Entorno
+### Usar datos Mock (desarrollo sin API)
 
-El backend usa el archivo `.env` para configuración. Por defecto viene configurado para usar el mock:
-
+En `rate-shopper-backend/.env`:
 ```env
-PORT=3001
 USE_MOCK=true
 ```
 
-#### Para usar la API real de Sendcloud:
+Esto usará datos de ejemplo sin consumir tu cuota de API de Sendcloud.
 
-1. Edita `rate-shopper-backend/.env`:
+### Cambiar puerto del backend
+
+En `rate-shopper-backend/.env`:
 ```env
-PORT=3001
-USE_MOCK=false
-SENDCLOUD_PUBLIC_KEY=tu_public_key_aqui
-SENDCLOUD_SECRET_KEY=tu_secret_key_aqui
+PORT=3001  # Cambia al puerto que prefieras
 ```
 
-2. Las credenciales se obtienen desde el panel de Sendcloud en Settings > Integration
-
-3. **IMPORTANTE**: Configura el "Nickname" de cada contrato en Sendcloud con el ID de tu ERP (ej: "V24059")
-
----
-
-## 🏗️ Estructura del Proyecto
-
-```
-Desarrollo mailboxes/
-├── rate-shopper-backend/
-│   ├── server.js              # Servidor Express principal
-│   ├── routes/
-│   │   └── rates.js           # Endpoint /api/get-rates
-│   ├── services/
-│   │   └── sendcloud.mock.js  # Servicio mock de Sendcloud
-│   ├── utils/
-│   │   └── validator.js       # Validación de JSON
-│   ├── package.json
-│   └── .env
-│
-├── rate-shopper-frontend/
-│   ├── src/
-│   │   ├── App.jsx            # Componente principal
-│   │   ├── components/
-│   │   │   ├── UploadZone.jsx     # Zona de carga
-│   │   │   ├── ShipmentReview.jsx # Panel de revisión
-│   │   │   ├── ResultsTable.jsx   # Tabla de resultados
-│   │   │   └── Toast.jsx          # Notificaciones
-│   │   ├── index.css          # Estilos globales + Tailwind
-│   │   └── main.jsx           # Entry point
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── package.json
-│
-└── expedicion0001000081...json    # Archivo de ejemplo
+Y actualiza `rate-shopper-frontend/src/App.jsx`:
+```javascript
+const API_URL = 'http://localhost:3001';  // Ajusta el puerto
 ```
 
----
-
-## 🎨 Stack Tecnológico
+## 🛠️ Tecnologías
 
 ### Frontend
-- **React 18**: Librería UI
-- **Vite**: Build tool y dev server
-- **TailwindCSS**: Framework CSS
-- **Axios**: Cliente HTTP
+- **React 18** - Librería UI
+- **Vite** - Build tool y dev server
+- **TailwindCSS** - Estilos utility-first
+- **Lucide React** - Iconos
 
 ### Backend
-- **Node.js**: Runtime
-- **Express**: Framework web
-- **CORS**: Middleware para CORS
-- **dotenv**: Variables de entorno
+- **Express.js** - Framework web
+- **Sendcloud API v2** - Integración de tarifas
+- **CORS** - Políticas de origen cruzado
+- **dotenv** - Gestión de variables de entorno
 
-### API
-- **Sendcloud v2**: Servicio de cotización (con mock incluido)
+## 📊 Funcionalidades Técnicas
 
----
+### Cálculo de Peso Volumétrico
 
-## 🧪 Datos Mock (PoC)
+La aplicación calcula automáticamente el peso volumétrico usando la fórmula estándar:
 
-El servicio mock incluye **8 contratos simulados**:
+```
+Peso Volumétrico (kg) = (Largo × Ancho × Alto en cm) / 5000
+```
 
-| Transportista | Contratos | IDs ERP |
-|--------------|-----------|---------|
-| DHL | 3 | V24059, V24060, V24061 |
-| UPS | 2 | U12345, U12346 |
-| FedEx | 1 | F99999 |
-| Correos Express | 2 | C88001, C88002 |
+**Nota:** Actualmente desactivado para coincidir con el comportamiento del panel oficial de Sendcloud.
 
-Los precios se ajustan automáticamente según el peso del envío.
+### Deduplicación de Métodos
 
----
+El sistema filtra métodos duplicados priorizando:
+- Métodos con rangos de peso específicos (ej: "UPS Standard 16-18kg")
+- Sobre métodos genéricos (ej: "UPS® Standard")
 
-## 🔐 Seguridad
+### Batch Processing
 
-- ✅ Las credenciales de API **nunca** están en el frontend
-- ✅ Variables de entorno para secretos
-- ✅ CORS configurado para localhost
-- ✅ Validación estricta de entrada
-
----
-
-## 📊 Rendimiento
-
-- **Latencia objetivo**: < 5 segundos
-- **Mock response time**: 500-1500ms (simulado)
-- **Caching**: Lista de carriers cacheada 1 hora (en producción)
-
----
+Las llamadas a la API se procesan en lotes de 5 para evitar rate limiting.
 
 ## 🐛 Troubleshooting
 
-### El frontend no conecta con el backend
-- Verifica que el backend esté corriendo en `http://localhost:3001`
-- Revisa la consola del navegador para errores de CORS
+### Error: API keys no válidas
+```
+Error: Unauthorized - Invalid API credentials
+```
+**Solución:** Verifica que tus `SENDCLOUD_PUBLIC_KEY` y `SENDCLOUD_SECRET_KEY` sean correctas.
 
-### Error "JSON inválido"
-- Asegúrate de que el JSON tenga todos los campos requeridos
-- Verifica que `countryCode` sea formato ISO (2 letras mayúsculas)
-- Confirma que los paquetes tengan dimensiones válidas
+### Error: CORS
+```
+Error: Access-Control-Allow-Origin
+```
+**Solución:** Asegúrate de que el backend esté corriendo en el puerto correcto (3001).
 
-### El servidor no inicia
-- Ejecuta `npm install` en la carpeta correspondiente
-- Verifica que el puerto 3001 (backend) o 5173 (frontend) no estén en uso
+### Error: Módulos no encontrados
+```
+Error: Cannot find module
+```
+**Solución:** Ejecuta `npm install` en ambos directorios (backend y frontend).
 
----
+## 📝 Notas sobre Precios
 
-## 📞 Soporte
+Los precios mostrados provienen directamente de la API pública de Sendcloud y pueden diferir ligeramente del panel oficial debido a:
 
-Para integración con la API real de Sendcloud:
-1. Obtén credenciales desde tu panel de Sendcloud
-2. Configura los Nicknames de contratos con tus IDs de ERP
-3. Actualiza el archivo `.env` en el backend
-4. Reinicia el servidor
+- Contratos específicos de cuenta
+- Descuentos negociados no reflejados en la API pública
+- Recargos aplicados a nivel de cuenta
 
----
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
 ## 📄 Licencia
 
-MIT
+Este proyecto es privado y propiedad de Mail Boxes Etc.
+
+## 👤 Autor
+
+**Juan Luis Navarro** - [@Jpubli](https://github.com/Jpubli)
+
+## 🙏 Agradecimientos
+
+- [Sendcloud](https://www.sendcloud.com/) - API de shipping
+- [TailwindCSS](https://tailwindcss.com/) - Framework CSS
+- [Vite](https://vitejs.dev/) - Build tool
 
 ---
 
-**Desarrollado para MailBoxes - Rate Shopper v1.0**
+**Última actualización:** Noviembre 2025

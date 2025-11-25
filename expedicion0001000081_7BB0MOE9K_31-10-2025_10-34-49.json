@@ -1,0 +1,175 @@
+{
+  "externalId": "21",
+  "id": "0",
+  "shipment": "1000081",
+  "reference": "JOSE FERRANDEZ ANDRES",
+  "reference2": "",
+  "courier": "UPS",
+  "account": "4813V3",
+  "service": "SAVER",
+  "shipmentTerms": "DDU",
+  "dutiesPaidBy": "",
+  "dutiesPayor": "",
+  "shipDate": "2025-10-31",
+  "shipTime": "00:00:00",
+  "invoiceB64": "",
+  "shipper": {
+    "contactName": "MAIL BOXES",
+    "companyName": "JOSE FERRANDEZ ANDRES, S.L.",
+    "phoneNumber": "966610052",
+    "email": "tbelda@joseferrandez.es",
+    "email2": "",
+    "address": "TALES MILETO 3, SOTANO",
+    "address2": "",
+    "address3": "",
+    "city": "ELCHE",
+    "state": "",
+    "postalCode": "03203",
+    "countryCode": "ES"
+  },
+  "recipient": {
+    "contactName": "CONTACTO FRANCIAS",
+    "companyName": "TEST  FRANCIA",
+    "phoneNumber": "123456789",
+    "email": "adm.mbe108@gmail.com",
+    "email2": "",
+    "address": "ARCO DEL TRIUNFO1",
+    "address2": "DIR 2",
+    "address3": "DIR 3",
+    "city": "PARIS",
+    "state": "",
+    "postalCode": "75001",
+    "countryCode": "FR"
+  },
+  "commodity": {
+    "description": "11",
+    "packaging": "PQ",
+    "onlyDocuments": 0,
+    "label": "PDF"
+  },
+  "delivery": {
+    "saturday": 0,
+    "onlyDirect": 0
+  },
+  "notifications": {
+    "from": "SYSTEM MAIL S.COOP.V",
+    "errorMail": "info@mbe108.es",
+    "mails": [
+      {
+        "ship": "1",
+        "error": "0",
+        "deliver": "0",
+        "name": "",
+        "contact": "",
+        "mail": "adm.mbe108@gmail.com"
+      },
+      {
+        "ship": "0"
+      },
+      {
+        "error": "1"
+      },
+      {
+        "deliver": "0"
+      },
+      {
+        "name": "SYSTEM MAIL S.COOP.V",
+        "contact": "",
+        "mail": "info@mbe108.es"
+      }
+    ]
+  },
+  "totalPackages": "10",
+  "packages": [
+    {
+      "id": "001",
+      "reference": "1000081/001-001",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "002",
+      "reference": "1000081/002-002",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "003",
+      "reference": "1000081/003-003",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "004",
+      "reference": "1000081/004-004",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "005",
+      "reference": "1000081/005-005",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "006",
+      "reference": "1000081/006-006",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "007",
+      "reference": "1000081/007-007",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "008",
+      "reference": "1000081/008-008",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "009",
+      "reference": "1000081/009-009",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    },
+    {
+      "id": "010",
+      "reference": "1000081/010-010",
+      "description": "11",
+      "kg": "10.00",
+      "lar": "30",
+      "anc": "60",
+      "alt": "50"
+    }
+  ]
+}

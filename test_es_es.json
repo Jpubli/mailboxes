@@ -1,0 +1,19 @@
+{
+    "shipment": "TEST_ES_ES",
+    "shipper": {
+        "postalCode": "03203",
+        "countryCode": "ES"
+    },
+    "recipient": {
+        "postalCode": "28001",
+        "countryCode": "ES"
+    },
+    "packages": [
+        {
+            "kg": "1.00",
+            "lar": "10",
+            "anc": "10",
+            "alt": "10"
+        }
+    ]
+}

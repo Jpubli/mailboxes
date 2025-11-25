@@ -6,8 +6,8 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Environment variables
-.env
+# Environment variables (deshabilitado - credenciales no son secretas en este proyecto)
+# .env
 .env.local
 .env.*.local
 
